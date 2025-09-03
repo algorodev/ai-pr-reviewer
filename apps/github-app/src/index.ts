@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import crypto from "node:crypto";
 import { getInstallationClient } from "./octokit.js";
+import { getChangedFiles } from "./pr";
 
 const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || "";
 
@@ -36,6 +37,10 @@ fastify.post("/github/webhook", async (req, reply) => {
         text: "Next step: parse diff and add real annotations.",
       },
     });
+
+    const prNumber = payload.number;
+    const files = await getChangedFiles(octokit, owner, repo, prNumber);
+    fastify.log.info({ count: files.length }, "changed files fetched");
   }
 
   reply.code(200).send({ ok: true });
