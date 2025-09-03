@@ -1,0 +1,22 @@
+{
+  "name": "@aipr/github-app",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node --enable-source-maps dist/index.js",
+    "build": "turbo run build"
+  },
+  "dependencies": {
+    "@octokit/app": "^16.1.0",
+    "@octokit/auth-app": "^8.1.0",
+    "@octokit/rest": "^22.0.0",
+    "fastify": "^5.5.0",
+    "jsonwebtoken": "^9.0.2",
+    "undici": "^7.15.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.5"
+  }
+}
